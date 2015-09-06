@@ -1,0 +1,20 @@
+{
+  "name": "apiway",
+  "version": "0.0.1",
+  "description": "Client side for Apiway framework",
+  "main": "./dst/Apiway.js",
+  "scripts": {
+    "build": "gulp build"
+  },
+  "author": "Denis Churbanov",
+  "license": "MIT",
+  "devDependencies": {
+    "gulp": "^3.9.0",
+    "gulp-babel": "^5.2.1"
+  },
+  "dependencies": {
+    "js.event_emitter": "^0.0.1",
+    "js.private": "^0.0.1",
+    "native-promise-only": "^0.8.1"
+  }
+}
