@@ -158,11 +158,11 @@ var $ = (0, _jsPrivate2["default"])({
     _Api2["default"].send(_Events.RESOURCE.SYNC, { id: id, name: name, params: params });
   },
 
-  applyDataChanges: function applyDataChanges(changes) {
-    var _changes = _slicedToArray(changes, 2);
+  applyDataPatch: function applyDataPatch(patch) {
+    var _patch = _slicedToArray(patch, 2);
 
-    var del = _changes[0];
-    var add = _changes[1];
+    var del = _patch[0];
+    var add = _patch[1];
     var jsonDataArr = $(this).jsonData.split("");
     for (var index in del) {
       jsonDataArr.splice(index, del[index]);
@@ -189,7 +189,7 @@ var HANDLERS = (_HANDLERS = {}, _defineProperty(_HANDLERS, _Events.API.READY, fu
   $(this).sync.call(this);
 }), _defineProperty(_HANDLERS, _Events.RESOURCE.SYNC, function (data) {
   if (data.id == $(this).id) {
-    if (data.changes) $(this).applyDataChanges(data.changes);else if (data.full) $(this).applyDataFull(data.full);else if (data.error) this.trigger(_Events.RESOURCE.ERROR, data.error);
+    if (data.patch) $(this).applyDataPatch(data.patch);else if (data.full) $(this).applyDataFull(data.full);else if (data.error) this.trigger(_Events.RESOURCE.ERROR, data.error);
   }
 }), _HANDLERS);
 
