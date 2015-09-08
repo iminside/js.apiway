@@ -107,8 +107,8 @@ const $ = Private({
     Api.send( RESOURCE.SYNC, { id, name, params } );
   },
 
-  applyDataChanges: function( changes ){
-    let [ del, add ] = changes,
+  applyDataPatch: function( patch ){
+    let [ del, add ] = patch,
         jsonDataArr  = $( this ).jsonData.split( `` );
     for( let index in del ) jsonDataArr.splice( index, del[ index ] );
     for( let index in add ) Array.prototype.splice.apply( jsonDataArr, [ index, 0 ].concat( add[ index ].split( `` ) ) );
@@ -138,11 +138,11 @@ const HANDLERS = {
 
   [ RESOURCE.SYNC ]: function( data ){
     if( data.id == $( this ).id ){
-      if( data.changes ) $( this ).applyDataChanges( data.changes );
+      if( data.patch ) $( this ).applyDataPatch( data.patch );
       else
-      if( data.full )    $( this ).applyDataFull( data.full );
+      if( data.full )  $( this ).applyDataFull( data.full );
       else
-      if( data.error )   this.trigger( RESOURCE.ERROR, data.error );
+      if( data.error ) this.trigger( RESOURCE.ERROR, data.error );
     }
   }
 
