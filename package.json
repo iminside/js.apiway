@@ -1,6 +1,6 @@
 {
   "name": "apiway",
-  "version": "0.0.2",
+  "version": "0.0.3",
   "description": "Client side for Apiway framework",
   "main": "./dst/Apiway.js",
   "repository": {
@@ -17,8 +17,8 @@
     "gulp-babel": "^5.2.1"
   },
   "dependencies": {
-    "js.event_emitter": "^0.0.1",
-    "js.private": "^0.0.1",
+    "js.event_emitter": ">0.0.1",
+    "js.private": ">0.0.3",
     "native-promise-only": "^0.8.1"
   }
 }

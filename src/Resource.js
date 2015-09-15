@@ -52,7 +52,6 @@ class Resource extends EventEmitter {
     this.off();
     $( this ).switchHandlersTo( `off` );
     Api.send( RESOURCE.DESTROY, { id: $( this ).id } );
-    $.destroy( this );
     return this;
   }
 
