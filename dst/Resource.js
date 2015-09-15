@@ -83,7 +83,6 @@ var Resource = (function (_EventEmitter) {
       this.off();
       $(this).switchHandlersTo("off");
       _Api2["default"].send(_Events.RESOURCE.DESTROY, { id: $(this).id });
-      $.destroy(this);
       return this;
     }
   }, {
