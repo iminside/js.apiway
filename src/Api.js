@@ -109,7 +109,7 @@ const $ = Private({
 
   onClose: function( e ){
     console.warn( `Api disconnected from "${ this.address }"` );
-    setTimeout( $( this ).dispatch.bind( this ), $( this ).reconnectDelay * 100 );
+    setTimeout( $( this ).dispatch, $( this ).reconnectDelay * 100 );
     $( this ).reconnectDelay += 1;
     this.trigger( API.DISCONNECT, e );
   },

@@ -107,13 +107,10 @@ const $ = Private({
   },
 
   applyDataPatch: function( patch ){
-    let [ del, add ] = patch,
-        jsonDataArr  = $( this ).jsonData.split( `` );
-    for( let index in del ) jsonDataArr.splice( index, del[ index ] );
-    for( let index in add ) Array.prototype.splice.apply( jsonDataArr, [ index, 0 ].concat( add[ index ].split( `` ) ) );
-    let jsonData = jsonDataArr.join( `` );
-    $( this ).jsonData = jsonData;
-    $( this ).replaceData( JSON.parse( jsonData ) );
+    let [ del, add ] = patch;
+    for( let index in del ) $( this ).jsonData = $( this ).jsonData.slice( 0, index ) + $( this ).jsonData.slice( del[ index ] );
+    for( let index in add ) $( this ).jsonData = $( this ).jsonData.slice( 0, index ) + add[ index ] + $( this ).jsonData.slice( index );
+    $( this ).replaceData( JSON.parse( $( this ).jsonData ) );
   },
 
   applyDataFull: function( data ){

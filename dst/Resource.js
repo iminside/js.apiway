@@ -162,14 +162,12 @@ var $ = (0, _jsPrivate2["default"])({
 
     var del = _patch[0];
     var add = _patch[1];
-    var jsonDataArr = $(this).jsonData.split("");
+
     for (var index in del) {
-      jsonDataArr.splice(index, del[index]);
+      $(this).jsonData = $(this).jsonData.slice(0, index) + $(this).jsonData.slice(del[index]);
     }for (var index in add) {
-      Array.prototype.splice.apply(jsonDataArr, [index, 0].concat(add[index].split("")));
-    }var jsonData = jsonDataArr.join("");
-    $(this).jsonData = jsonData;
-    $(this).replaceData(JSON.parse(jsonData));
+      $(this).jsonData = $(this).jsonData.slice(0, index) + add[index] + $(this).jsonData.slice(index);
+    }$(this).replaceData(JSON.parse($(this).jsonData));
   },
 
   applyDataFull: function applyDataFull(data) {

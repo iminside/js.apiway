@@ -176,7 +176,7 @@ var $ = (0, _jsPrivate2["default"])({
 
   onClose: function onClose(e) {
     console.warn("Api disconnected from \"" + this.address + "\"");
-    setTimeout($(this).dispatch.bind(this), $(this).reconnectDelay * 100);
+    setTimeout($(this).dispatch, $(this).reconnectDelay * 100);
     $(this).reconnectDelay += 1;
     this.trigger(_Events.API.DISCONNECT, e);
   },
