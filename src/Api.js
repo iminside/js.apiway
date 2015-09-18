@@ -82,7 +82,6 @@ const $ = Private({
   },
 
   dispatch: function( e ){
-    console.log(this);
     $( this ).dispatcher           = new WebSocket( this.address );
     $( this ).dispatcher.onopen    = ( e )=> $( this ).onOpen( e );
     $( this ).dispatcher.onclose   = ( e )=> $( this ).onClose( e );

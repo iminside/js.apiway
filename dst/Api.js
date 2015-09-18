@@ -148,7 +148,6 @@ var $ = (0, _jsPrivate2["default"])({
   dispatch: function dispatch(e) {
     var _this = this;
 
-    console.log(this);
     $(this).dispatcher = new WebSocket(this.address);
     $(this).dispatcher.onopen = function (e) {
       return $(_this).onOpen(e);
