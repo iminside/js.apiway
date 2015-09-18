@@ -82,11 +82,12 @@ const $ = Private({
   },
 
   dispatch: function( e ){
+    console.log(this);
     $( this ).dispatcher           = new WebSocket( this.address );
-    $( this ).dispatcher.onopen    = $( this ).onOpen;
-    $( this ).dispatcher.onclose   = $( this ).onClose;
-    $( this ).dispatcher.onerror   = $( this ).onError;
-    $( this ).dispatcher.onmessage = $( this ).onMessage;
+    $( this ).dispatcher.onopen    = ( e )=> $( this ).onOpen( e );
+    $( this ).dispatcher.onclose   = ( e )=> $( this ).onClose( e );
+    $( this ).dispatcher.onerror   = ( e )=> $( this ).onError( e );
+    $( this ).dispatcher.onmessage = ( e )=> $( this ).onMessage( e );
   },
 
   onOpen: function( e ){
@@ -95,10 +96,7 @@ const $ = Private({
     $( this ).callHandler( API.ALIVE );
     let beforeReadyPromise = $( this ).beforeReadyPromiseCallback();
     if( beforeReadyPromise instanceof Promise ){
-      beforeReadyPromise.then(
-        ( e )=>{ this.trigger( API.READY,   e ) },
-        ( e )=>{ this.trigger( API.UNREADY, e ) }
-      );
+      beforeReadyPromise.then( ( e )=> this.trigger( API.READY, e ), ( e )=> this.trigger( API.UNREADY, e ) );
     }else console.warn( `BeforeReadyPromise must be return instance of Promise` );
   },
 
@@ -109,7 +107,7 @@ const $ = Private({
 
   onClose: function( e ){
     console.warn( `Api disconnected from "${ this.address }"` );
-    setTimeout( $( this ).dispatch, $( this ).reconnectDelay * 100 );
+    setTimeout( ()=> $( this ).dispatch(), $( this ).reconnectDelay * 100 );
     $( this ).reconnectDelay += 1;
     this.trigger( API.DISCONNECT, e );
   },

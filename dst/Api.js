@@ -146,15 +146,26 @@ var $ = (0, _jsPrivate2["default"])({
   },
 
   dispatch: function dispatch(e) {
+    var _this = this;
+
+    console.log(this);
     $(this).dispatcher = new WebSocket(this.address);
-    $(this).dispatcher.onopen = $(this).onOpen;
-    $(this).dispatcher.onclose = $(this).onClose;
-    $(this).dispatcher.onerror = $(this).onError;
-    $(this).dispatcher.onmessage = $(this).onMessage;
+    $(this).dispatcher.onopen = function (e) {
+      return $(_this).onOpen(e);
+    };
+    $(this).dispatcher.onclose = function (e) {
+      return $(_this).onClose(e);
+    };
+    $(this).dispatcher.onerror = function (e) {
+      return $(_this).onError(e);
+    };
+    $(this).dispatcher.onmessage = function (e) {
+      return $(_this).onMessage(e);
+    };
   },
 
   onOpen: function onOpen(e) {
-    var _this = this;
+    var _this2 = this;
 
     console.info("Api connected to \"" + this.address + "\"");
     $(this).reconnectDelay = 0;
@@ -162,9 +173,9 @@ var $ = (0, _jsPrivate2["default"])({
     var beforeReadyPromise = $(this).beforeReadyPromiseCallback();
     if (beforeReadyPromise instanceof _nativePromiseOnly2["default"]) {
       beforeReadyPromise.then(function (e) {
-        _this.trigger(_Events.API.READY, e);
+        return _this2.trigger(_Events.API.READY, e);
       }, function (e) {
-        _this.trigger(_Events.API.UNREADY, e);
+        return _this2.trigger(_Events.API.UNREADY, e);
       });
     } else console.warn("BeforeReadyPromise must be return instance of Promise");
   },
@@ -175,8 +186,12 @@ var $ = (0, _jsPrivate2["default"])({
   },
 
   onClose: function onClose(e) {
+    var _this3 = this;
+
     console.warn("Api disconnected from \"" + this.address + "\"");
-    setTimeout($(this).dispatch, $(this).reconnectDelay * 100);
+    setTimeout(function () {
+      return $(_this3).dispatch();
+    }, $(this).reconnectDelay * 100);
     $(this).reconnectDelay += 1;
     this.trigger(_Events.API.DISCONNECT, e);
   },
@@ -194,11 +209,11 @@ var $ = (0, _jsPrivate2["default"])({
 });
 
 var HANDLERS = (_HANDLERS = {}, _defineProperty(_HANDLERS, _Events.API.ALIVE, function (data) {
-  var _this2 = this;
+  var _this4 = this;
 
   if ($(this).aliveTimer) clearTimeout($(this).aliveTimer);
   if (this.aliveDelay) $(this).aliveTimer = setTimeout(function () {
-    $(_this2).aliveTimer = null;_this2.send(_Events.API.ALIVE);
+    $(_this4).aliveTimer = null;_this4.send(_Events.API.ALIVE);
   }, this.aliveDelay);
 }), _defineProperty(_HANDLERS, _Events.API.SUCCESS, function (data) {
   $(this).journal[data.query_id].success.call(this, data.result);

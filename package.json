@@ -1,6 +1,6 @@
 {
   "name": "apiway",
-  "version": "0.0.4",
+  "version": "0.0.6",
   "description": "Client side for Apiway framework",
   "main": "./dst/Apiway.js",
   "repository": {
@@ -8,9 +8,12 @@
     "url": "git://github.com/4urbanoff/js.apiway.git"
   },
   "scripts": {
+    "start": "gulp",
     "build": "gulp build"
   },
-  "author": "Denis Churbanov",
+  "author": {
+    "name": "Denis Churbanov"
+  },
   "license": "MIT",
   "devDependencies": {
     "gulp": "^3.9.0",
@@ -20,5 +23,14 @@
     "js.event_emitter": ">0.0.1",
     "js.private": ">0.0.3",
     "native-promise-only": "^0.8.1"
-  }
+  },
+  "gitHead": "6b8ca1065c6d99279136a2cbb667eef99a32fdd4",
+  "bugs": {
+    "url": "https://github.com/4urbanoff/js.apiway/issues"
+  },
+  "readme": "ERROR: No README data found!",
+  "homepage": "https://github.com/4urbanoff/js.apiway#readme",
+  "_id": "apiway@0.0.4",
+  "_shasum": "037f5400698548ae16390c7de159eadeb75e5287",
+  "_from": "apiway@>0.0.2"
 }
