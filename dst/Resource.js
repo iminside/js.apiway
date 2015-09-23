@@ -183,7 +183,7 @@ var $ = (0, _jsPrivate2["default"])({
 });
 
 var HANDLERS = (_HANDLERS = {}, _defineProperty(_HANDLERS, _Events.API.READY, function (data) {
-  $(this).sync.call(this);
+  $(this).sync();
 }), _defineProperty(_HANDLERS, _Events.RESOURCE.SYNC, function (data) {
   if (data.id == $(this).id) {
     if (data.patch) $(this).applyDataPatch(data.patch);else if (data.full) $(this).applyDataFull(data.full);else if (data.error) this.trigger(_Events.RESOURCE.ERROR, data.error);
