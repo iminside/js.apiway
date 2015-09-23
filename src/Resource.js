@@ -129,7 +129,7 @@ const $ = Private({
 const HANDLERS = {
 
   [ API.READY ]: function( data ){
-    $( this ).sync.call( this );
+    $( this ).sync();
   },
 
   [ RESOURCE.SYNC ]: function( data ){
