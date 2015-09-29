@@ -177,7 +177,7 @@ var $ = (0, _jsPrivate2["default"])({
 
   replaceData: function replaceData(data) {
     $(this).data = data;
-    this.trigger(_Events.RESOURCE.CHANGE);
+    this.trigger(_Events.RESOURCE.CHANGE, data);
   }
 
 });
