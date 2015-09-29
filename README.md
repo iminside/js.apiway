@@ -148,8 +148,8 @@ Detach callback with context from "error" event.
 ```js
 let currentUser = new Resource( "CurrentUser" );
 currentUser
-  .onChange( ( e )=>{ console.log( "Data of current user:", currentUser.data ) })
-  .onError(  ( e )=>{ console.log( "Error", e ) });
+  .onChange( ( data  )=>{ console.log( "Data of current user:", data ) })
+  .onError(  ( error )=>{ console.log( "Error", error ) });
 
 // > Error auth_error
 
@@ -158,7 +158,7 @@ Api.query( "Users.auth_by_name", { name: "Bob" } );
 // > Data of current user: {id: 1, name: "Bob"}
 
 let messages = new Resource( "Messages", { limit: 3 } );
-messages.onChange( ()=>{ console.log( "Messages:", messages.data ) } );
+messages.onChange( ( data )=>{ console.log( "Messages:", data ) } );
 
 // > Messages [{text: "Hello world"}, {text: "Hello world"}, {text: "Hello world"}]
 
