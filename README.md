@@ -148,8 +148,8 @@ Detach callback with context from "error" event.
 ```js
 let currentUser = new Resource( "CurrentUser" );
 currentUser
-  .onChange( ( data  )=>{ console.log( "Data of current user:", data ) })
-  .onError(  ( error )=>{ console.log( "Error", error ) });
+  .onChange( ( data )=>{ console.log( "Data of current user:", data ) })
+  .onError( ( error )=>{ console.log( "Error", error ) });
 
 // > Error auth_error
 
