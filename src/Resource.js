@@ -120,7 +120,7 @@ const $ = Private({
 
   replaceData: function( data ){
     $( this ).data = data;
-    this.trigger( RESOURCE.CHANGE );
+    this.trigger( RESOURCE.CHANGE, data );
   }
 
 });
